@@ -8,14 +8,11 @@
     //$accountId = $config->EvalKitaccountid;
     
 	$basestring = '';
-	$config = get_config('blocks/evaluation_kit_sso');
 
 	$popup = optional_param('isPopup', null, PARAM_INT);
 	$cid = optional_param('cid', null, PARAM_INT);
 	$pid = optional_param('pid', null, PARAM_INT);
 	$roles = optional_param('roles', null, PARAM_TEXT);
-
-		$config = get_config('blocks/evaluation_kit_sso');
 		if (is_null($config->EvalKitaccounturl) || is_null($config->EvalKitconsumerkey) || is_null($config->EvalKitsharedsecretkey) 
 		|| empty($config->EvalKitaccounturl) || empty($config->EvalKitconsumerkey) || empty($config->EvalKitsharedsecretkey)) 
 		{
