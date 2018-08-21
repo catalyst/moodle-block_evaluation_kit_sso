@@ -64,4 +64,3 @@ else {
 			header("Location: ".$ekurl);
 			die();
 		}
-?>

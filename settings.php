@@ -12,5 +12,3 @@ if ($ADMIN->fulltree) {
         $settings->add($config);
     }
 }
-
-?>

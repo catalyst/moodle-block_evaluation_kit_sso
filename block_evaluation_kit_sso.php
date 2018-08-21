@@ -135,4 +135,3 @@ $provider->addParameter("evalkit_apppath", urlencode($apppath));
         return false;
     }
 }
-?>
