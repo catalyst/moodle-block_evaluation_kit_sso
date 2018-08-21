@@ -12,7 +12,7 @@ class EvalKitOAuthConsumer
     public $courseuniqueid;
     public $coursecode;
 
-    public function __construct($username, $consumerkey, $secret, $url, $httpMethod, $coursecode, $courseuniqueid, $callbackUrl = null)
+    public function __construct($username, $consumerkey, $secret, $url, $httpMethod, $coursecode = null, $courseuniqueid = null, $callbackUrl = null)
     {
         $this->httpMethod = $httpMethod;
         $this->consumerkey = $consumerkey;
@@ -164,7 +164,8 @@ ksort($this->params);
 		if(isset($url['path']))
 		{
 			// Case normalization
-			$url['path'] = preg_replace('/(%([0-9abcdef][0-9abcdef]))/ex', "'%'.strtoupper('\\2')", $url['path']);
+			$url['path'] =  preg_replace_callback('/(%([0-9abcdef][0-9abcdef]))/e', function ($matches) {return "'%'.strtoupper('\\2')";} , $url['path']);
+
 			//Strip duplicate slashes
 			while(preg_match("/\/\//", $url['path']))
 				$url['path'] = preg_replace("/\/\//", "/", $url['path']);

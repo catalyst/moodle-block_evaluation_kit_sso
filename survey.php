@@ -5,7 +5,7 @@
     require_login();
     $config = get_config('blocks/evaluation_kit_sso');
 
-    $accountId = $config->EvalKitaccountid;
+    //$accountId = $config->EvalKitaccountid;
     
 	$basestring = '';
 	$config = get_config('blocks/evaluation_kit_sso');

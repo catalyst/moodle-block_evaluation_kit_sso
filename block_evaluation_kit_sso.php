@@ -10,7 +10,6 @@ require_once("Utils.php");
 class block_evaluation_kit_sso extends block_base {
     function init() {
         $this->title = get_string('blockname', 'block_evaluation_kit_sso');
-	    $this->version = 2013112520;
 	    $this->content_type = BLOCK_TYPE_TEXT;
     }
     public function get_content() {
@@ -72,13 +71,16 @@ class block_evaluation_kit_sso extends block_base {
      		  if ($courseid!=null)
 		      {
 			      $provider->addParameter("course_id", $courseid);
-		      }
-
+		      }		
+          
+			
 		if($courseuniqueid != null) {
-        		$provider->addParameter("course_unique_id", urlencode($courseuniqueid));
+				//$provider->addParameter("course_unique_id", urlencode($courseuniqueid));
+        		$provider->addParameter("course_unique_id", urlencode(str_replace(" ","",$courseuniqueid)));
 		}
 		if($coursecode != null) {
-        		$provider->addParameter("course_code", urlencode($coursecode));
+        		//$provider->addParameter("course_code", urlencode($coursecode));
+        		$provider->addParameter("course_code", urlencode(str_replace(" ","",$coursecode)));
 		}
 $provider->addParameter("evalkit_apppath", urlencode($apppath));
 
