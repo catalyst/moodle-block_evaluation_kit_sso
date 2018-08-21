@@ -9,7 +9,7 @@ class EvalKitUtils
 		return true;
 
 	$config = get_config('blocks/evaluation_kit_sso');
-      $studentRolesCsv = $config->EvalKitstudentroles;
+      $studentRolesCsv = 'student'; //$config->EvalKitstudentroles;
 	if (empty($studentRolesCsv))
 		$studentRolesCsv = 'student';
 	$studentRoles = explode(',',$studentRolesCsv);

@@ -61,7 +61,7 @@ ksort($this->params);
         	$this->addParameter("oauth_signature_method", "HMAC-SHA1");
         	$this->addParameter("oauth_version", "1.0");
         	$this->addParameter("oauth_nonce", time());
-        	$this->addParameter("username", $this->username);
+        	$this->addParameter("username", urlencode($this->username));
         
 		// get base
 		//$base = urlencode($this->httpMethod).'&'.urlencode($this->normalizeURL($this->url)).'&';

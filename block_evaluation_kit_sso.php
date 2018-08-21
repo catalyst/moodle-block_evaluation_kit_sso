@@ -15,7 +15,7 @@ class block_evaluation_kit_sso extends block_base {
     }
     public function get_content() {
 
-		global $CFG, $USER, $COURSE, $PAGE;
+		global $CFG, $USER, $COURSE, $PAGE, $SITE;
 
 		if ($this->content !== null ) {
 			return $this->content;
@@ -56,19 +56,30 @@ class block_evaluation_kit_sso extends block_base {
 				{
 					$coursecode = null;
 					$courseuniqueid = null;
-					$coursecode = $COURSE->idnumber;
-					$courseuniqueid = $COURSE->idnumber;
+					$courseid = null;
+					if ($SITE->shortname != $COURSE->shortname)
+					{
+						$courseid = $COURSE->id;
+						$coursecode = $COURSE->shortname;
+						$courseuniqueid = $COURSE->idnumber;
+						if($courseuniqueid == null || empty($courseuniqueid)) 
+						{
+							$courseuniqueid = $coursecode;
+						}
+					}
 				
 					$provider = new EvalKitOAuthConsumer($USER->username, $consumerkey, $sharedsecretkey, $accounturl.'/UserIntegration/Settings/Moodle', 'GET', $coursecode, $courseuniqueid);
-		
-                                        if($courseuniqueid != null) {
+     		  if ($courseid!=null)
+		      {
+			      $provider->addParameter("course_id", $courseid);
+		      }
+
+		if($courseuniqueid != null) {
         		$provider->addParameter("course_unique_id", urlencode($courseuniqueid));
 		}
 		if($coursecode != null) {
         		$provider->addParameter("course_code", urlencode($coursecode));
 		}
-                //echo $coursecode . '-' .  $courseuniqueid . "<br />";
-                // print_r($COURSE);
 $provider->addParameter("evalkit_apppath", urlencode($apppath));
 
 		//32=OAuth Moodle, 33=popup
