@@ -35,8 +35,7 @@ class block_evaluation_kit_sso extends block_base {
 			$ret = '<!--EvaluationKIT 1-->';
 			$ret .= '<div id="ek-widget">ek-widget</div>';
 			$ret .= '<script>var evalkit_portlet = document.getElementById("ek-widget").parentNode.parentNode;if(evalkit_portlet !== null && evalkit_portlet.classList.contains("block_evaluation_kit_sso"));evalkit_portlet.style.display = "none";</script>';
-		
-			$config = get_config('blocks/evaluation_kit_sso');
+
 			if ($USER->id > 0 && (is_null($config->EvalKitaccounturl) || is_null($config->EvalKitconsumerkey) || is_null($config->EvalKitsharedsecretkey) 
 			|| empty($config->EvalKitaccounturl) || empty($config->EvalKitconsumerkey) || empty($config->EvalKitsharedsecretkey))) 
 			{
