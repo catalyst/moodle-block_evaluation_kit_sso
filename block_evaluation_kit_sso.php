@@ -52,19 +52,20 @@ class block_evaluation_kit_sso extends block_base {
 				$basestring = '';
 				try
 				{
-					$coursecode = null;
-					$courseuniqueid = null;
-					$courseid = null;
-					if ($COURSE->id !== SITEID)	{
-						$courseid = $COURSE->id;
-						$coursecode = $COURSE->shortname;
-						$courseuniqueid = $COURSE->idnumber;
-						if($courseuniqueid == null || empty($courseuniqueid)) 
-						{
-							$courseuniqueid = $coursecode;
-						}
-					}
-				
+                    $coursecode = null;
+                    $courseuniqueid = null;
+                    $courseid = null;
+                    if ($COURSE->id !== SITEID)	{
+                        $courseid = $COURSE->id;
+                        $coursecode = $COURSE->shortname;
+                        if (!empty($COURSE->idnumber)) {
+                            // Use idnumber as identifier for this course. - shortname is not always unique.
+                            $courseuniqueid = $COURSE->idnumber;
+                        } else {
+                            $courseuniqueid = $coursecode;
+                        }
+                }
+
 					$provider = new EvalKitOAuthConsumer($USER->username, $consumerkey, $sharedsecretkey, $accounturl.'/UserIntegration/Settings/Moodle', 'GET', $coursecode, $courseuniqueid);
      		  if ($courseid!=null)
 		      {
