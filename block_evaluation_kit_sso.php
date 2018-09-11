@@ -14,7 +14,7 @@ class block_evaluation_kit_sso extends block_base {
     }
     public function get_content() {
 
-		global $CFG, $USER, $COURSE, $PAGE, $SITE;
+		global $CFG, $USER, $COURSE, $PAGE;
 
 		if ($this->content !== null ) {
 			return $this->content;
@@ -55,8 +55,7 @@ class block_evaluation_kit_sso extends block_base {
 					$coursecode = null;
 					$courseuniqueid = null;
 					$courseid = null;
-					if ($SITE->shortname != $COURSE->shortname)
-					{
+					if ($COURSE->id !== SITEID)	{
 						$courseid = $COURSE->id;
 						$coursecode = $COURSE->shortname;
 						$courseuniqueid = $COURSE->idnumber;
