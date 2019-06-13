@@ -185,8 +185,11 @@ ksort($this->params);
 			$chrs = array('-', '.', '_', '~');
 			foreach($chrs as $chr)
 				$u[] = dechex(ord($chr));
-			$url['path'] = preg_replace_callback(array_map(create_function('$str', 'return "/%" . strtoupper($str) . "/x";'), $u),
-														   create_function('$matches', 'return chr(hexdec($matches[0]));'), $url['path']);
+			$url['path'] = preg_replace_callback(array_map(function($str) {
+					return "/%" . strtoupper($str) . "/x";
+				}, $u), function($matches) {
+					return chr(hexdec($matches[0]));
+				}, $url['path']);
 			// Remove directory index
 			$defaultIndexes = array("/default\.aspx/" => "default.aspx", "/default\.asp/"  => "default.asp",
 									"/index\.html/"   => "index.html",   "/index\.htm/"    => "index.htm",
