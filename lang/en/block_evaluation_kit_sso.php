@@ -20,6 +20,7 @@ $string['incorrectvalues'] = 'The provided values are incorrect';
 
 $string['block/evaluation_kit_sso:addinstance'] = 'Add a new EvaluationKIT User Access block';
 $string['block/evaluation_kit_sso:myaddinstance'] = 'Add a new EvaluationKIT User Access block to the My Moodle page';
+$string['evaluation_kit_sso:view'] = 'View block';
 
 $string['privacy:metadata'] = 'In order to integrate with EvaluationKit, user data needs to be exchanged with that service.';
 $string['privacy:metadata:userid'] = 'The userid of the Moodle user';
